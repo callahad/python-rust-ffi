@@ -1,20 +1,17 @@
-#![feature(core)]
-
-extern crate core;
-
 use std::thread;
-use core::num::Int;
 
 #[no_mangle]
-pub extern fn triple(x: i64) -> i64 {
+pub extern fn triple(x: i32) -> i32 {
 
     let _: Vec<_> = (0..10).map(|i| {
         thread::scoped(move || {
-            let mut x = 0;
             println!("Thread {} running", i);
-            while x < 2.pow(23) {
+
+            let mut x = 0;
+            while x < 1_000_000_000 {
                 x += 1
             }
+
             println!("Thread {} returning", i);
         })
     }).collect();
