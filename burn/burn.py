@@ -8,6 +8,6 @@ ffi.cdef("""
     int triple(int x);
 """)
 
-C = ffi.dlopen("target/debug/libburn-c21ba537b4f26cae.dylib")
+C = ffi.dlopen("target/debug/libburn.dylib")
 
 print(C.triple(3))

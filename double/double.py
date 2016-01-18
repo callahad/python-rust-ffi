@@ -7,6 +7,6 @@ ffi.cdef("""
     int double(int);
 """)
 
-C = ffi.dlopen("target/release/libdouble-8612fd65af997c10.dylib")
+C = ffi.dlopen("target/release/libdouble.dylib")
 
-print(C.double(3))
+print(C.double(9))

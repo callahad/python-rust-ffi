@@ -3,8 +3,8 @@ use std::thread;
 #[no_mangle]
 pub extern fn triple(x: i32) -> i32 {
 
-    let _: Vec<_> = (0..10).map(|i| {
-        thread::scoped(move || {
+    let handles: Vec<_> = (0..10).map(|i| {
+        thread::spawn(move || {
             println!("Thread {} running", i);
 
             let mut x = 0;
@@ -15,6 +15,10 @@ pub extern fn triple(x: i32) -> i32 {
             println!("Thread {} returning", i);
         })
     }).collect();
+
+    for h in handles {
+        h.join().unwrap();
+    }
 
     x * 3
 }
